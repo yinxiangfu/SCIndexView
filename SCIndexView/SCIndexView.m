@@ -228,7 +228,10 @@ static inline NSInteger SCPositionOfTextLayerInY(CGFloat y, CGFloat margin, CGFl
         [self.tableView setContentOffset:CGPointMake(0, -insetHeight) animated:NO];
     } else {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:self.currentSection + self.startSection];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        //处理段落无数据
+        if ([self.tableView cellForRowAtIndexPath:indexPath] != nil) {
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        }
     }
     
     if (self.isTouchingIndexView) {
