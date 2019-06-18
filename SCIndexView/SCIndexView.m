@@ -310,6 +310,9 @@ static inline NSInteger SCPositionOfTextLayerInY(CGFloat y, CGFloat margin, CGFl
     }
     self.indicator.text = textLayer.string;
     
+    //空字符用于占位
+    if ([textLayer.string length] == 0) return;
+    
     if (animated) {
         self.indicator.alpha = 0;
         self.indicator.hidden = NO;
@@ -346,6 +349,10 @@ static inline NSInteger SCPositionOfTextLayerInY(CGFloat y, CGFloat margin, CGFl
     if (self.currentSection < 0 || self.currentSection >= (NSInteger)self.subTextLayers.count) return;
     
     CATextLayer *textLayer = self.subTextLayers[self.currentSection];
+    
+    //空字符用于占位
+    if ([textLayer.string length] == 0) return;
+    
     UIColor *backgroundColor, *foregroundColor;
     if (selected) {
         backgroundColor = self.configuration.indexItemSelectedBackgroundColor;
